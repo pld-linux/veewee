@@ -1,7 +1,10 @@
+# TODO
+# - could be optional:
+#   - grit
 Summary:	Build Vagrant base boxes or KVM, VirtualBox and Fusion images
 Name:		veewee
 Version:	0.3.7
-Release:	0.6
+Release:	0.7
 License:	MIT
 Group:		Applications/Emulators
 Source0:	https://github.com/jedi4ever/veewee/archive/v%{version}.tar.gz
@@ -13,6 +16,7 @@ BuildRequires:	sed >= 4.0
 Requires:	ruby-ansi < 1.4
 Requires:	ruby-ansi >= 1.3.0
 Requires:	ruby-childprocess
+Requires:	ruby-grit
 Requires:	ruby-highline
 Requires:	ruby-i18n
 Requires:	ruby-net-ssh >= 2.2.0
@@ -24,7 +28,6 @@ Requires:	ruby-vnc >= 1.0.0
 Requires:	vagrant >= 0.9
 Suggests:	ruby-fission = 0.4.0
 Suggests:	ruby-fog >= 1.8
-Suggests:	ruby-grit
 Conflicts:	ruby-fog >= 2
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
