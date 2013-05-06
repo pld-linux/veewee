@@ -1,6 +1,7 @@
 # TODO
 # - could be optional:
 #   - grit
+#   - thor?
 Summary:	Build Vagrant base boxes or KVM, VirtualBox and Fusion images
 Name:		veewee
 Version:	0.3.7
@@ -24,6 +25,7 @@ Requires:	ruby-net-ssh >= 2.2.0
 Requires:	ruby-popen4 < 0.2
 Requires:	ruby-popen4 >= 0.1.2
 Requires:	ruby-progressbar
+Requires:	ruby-thor
 Requires:	ruby-vnc < 1.1
 Requires:	ruby-vnc >= 1.0.0
 Requires:	vagrant >= 0.9
