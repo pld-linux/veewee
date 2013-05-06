@@ -4,11 +4,12 @@
 Summary:	Build Vagrant base boxes or KVM, VirtualBox and Fusion images
 Name:		veewee
 Version:	0.3.7
-Release:	0.7
+Release:	0.10
 License:	MIT
 Group:		Applications/Emulators
 Source0:	https://github.com/jedi4ever/veewee/archive/v%{version}.tar.gz
 # Source0-md5:	2b5a2f293eabe65b9c104258574e5967
+Patch0:		install-root.patch
 URL:		http://github.com/jedi4ever/veewee/
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
@@ -32,6 +33,8 @@ Conflicts:	ruby-fog >= 2
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_appdir	%{_datadir}/%{name}
+
 %description
 Vagrant is a great tool to test new things or changes in a virtual
 machine (Virtualbox) using either Chef or Puppet.
@@ -48,13 +51,15 @@ Besides building Vagrant boxes, veewee can also be used for:
 
 %prep
 %setup -q
+%patch0 -p1
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{_bindir}}
+install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{_bindir},%{_appdir}}
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 cp -a bin/* $RPM_BUILD_ROOT%{_bindir}
+cp -a templates validation $RPM_BUILD_ROOT%{_appdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -65,6 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/veewee
 %{ruby_vendorlibdir}/%{name}.rb
 %{ruby_vendorlibdir}/%{name}
+%{_appdir}
 
 %{ruby_vendorlibdir}/fission.rb
 %dir %{ruby_vendorlibdir}/fission

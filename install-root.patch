@@ -1,0 +1,23 @@
+--- veewee-0.3.7/lib/veewee/environment.rb	2013-01-10 12:02:14.000000000 +0200
++++ veewee-0.3.7/lib/veewee/environment.rb	2013-05-06 10:44:52.445210226 +0300
+@@ -52,7 +52,7 @@
+     attr_reader :ostypes
+ 
+     def initialize(options = {})
+-
++      install_dir = ENV['VEEWEE_INSTALL_DIR'] || '/usr/share/veewee'
+       cwd = ENV['VEEWEE_DIR'] || Dir.pwd
+       # If a cwd was provided as option it overrules the default
+       cwd = options[:cwd] if options.has_key?(:cwd)
+@@ -62,9 +62,9 @@
+         :veewee_filename => "Veeweefile",
+         :loglevel => :info,
+         :definition_dir => File.join(cwd, "definitions"),
+-        :template_path => [File.expand_path(File.join(File.dirname(__FILE__), "..", "..", 'templates')), "templates"],
++        :template_path => [File.join(install_dir, 'templates'), "templates"],
+         :iso_dir => File.join(cwd, "iso"),
+-        :validation_dir => File.join(File.expand_path(File.join(File.dirname(__FILE__), "..", "..")), "validation"),
++        :validation_dir => File.join(install_dir, "validation"),
+         :tmp_dir => File.join(cwd, "tmp")
+       }
+ 
