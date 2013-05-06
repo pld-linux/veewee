@@ -1,11 +1,10 @@
 # TODO
 # - could be optional:
 #   - grit
-#   - thor?
 Summary:	Build Vagrant base boxes or KVM, VirtualBox and Fusion images
 Name:		veewee
 Version:	0.3.7
-Release:	0.10
+Release:	0.11
 License:	MIT
 Group:		Applications/Emulators
 Source0:	https://github.com/jedi4ever/veewee/archive/v%{version}.tar.gz
@@ -29,6 +28,7 @@ Requires:	ruby-thor
 Requires:	ruby-vnc < 1.1
 Requires:	ruby-vnc >= 1.0.0
 Requires:	vagrant >= 0.9
+Suggests:	ruby-cucumber
 Suggests:	ruby-fission = 0.4.0
 Suggests:	ruby-fog >= 1.8
 Conflicts:	ruby-fog >= 2
