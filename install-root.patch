@@ -21,3 +21,16 @@
          :tmp_dir => File.join(cwd, "tmp")
        }
  
+--- veewee-0.3.7/lib/veewee/provider/core/box/validate_tags.rb	2013-01-10 12:02:14.000000000 +0200
++++ veewee-0.3.7/lib/veewee/provider/core/box/validate_tags.rb	2013-05-06 14:06:41.000000000 +0300
+@@ -37,7 +37,9 @@
+             featurefile="veewee.feature"
+           end
+ 
+-          feature_path=File.join(File.dirname(__FILE__),"..","..","..","..","..","validation",featurefile)
++          #validation_dir = File.dirname(__FILE__),"..","..","..","..","..","validation"
++          validation_dir = '/usr/share/veewee/validation'
++          feature_path=File.join(validation_dir, featurefile)
+ 
+           features=Array.new
+           features[0]=feature_path
