@@ -26,13 +26,15 @@ Requires:	ruby-popen4 >= 0.1.2
 Requires:	ruby-progressbar
 Requires:	ruby-thor < 1
 Requires:	ruby-thor >= 0.15
-Requires:	ruby-vnc < 1.1
-Requires:	ruby-vnc >= 1.0.0
 Requires:	vagrant >= 0.9
+# vnc: for vmware fusion and kvm
+# fog: for libvirt (kvm)
 Suggests:	ruby-cucumber >= 1.0.0
 Suggests:	ruby-fission = 0.4.0
 Suggests:	ruby-fog >= 1.8
+Suggests:	ruby-vnc >= 1.0.1-1
 Conflicts:	ruby-fog >= 2
+Conflicts:	ruby-vnc > 1.2
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -56,6 +58,11 @@ Besides building Vagrant boxes, veewee can also be used for:
 %setup -q
 %patch0 -p1
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
+
+# unvendor
+# https://github.com/jedi4ever/veewee/commit/9f1163b53aa3ee82b0776c52bef92b74f6bd2cdb
+rm lib/net/vnc/vnc.rb
+%{__sed} -i -e 's,net/vnc/vnc.rb,net/vnc.rb,' lib/veewee/provider/core/box/vnc.rb
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -83,8 +90,6 @@ rm -rf $RPM_BUILD_ROOT
 %{ruby_vendorlibdir}/java/README.txt
 %{ruby_vendorlibdir}/java/dir2floppy.jar
 %{ruby_vendorlibdir}/java/dir2floppy.java
-
-%{ruby_vendorlibdir}/net/vnc/vnc.rb
 
 %dir %{ruby_vendorlibdir}/python
 %{ruby_vendorlibdir}/python/parallels_sdk_check.py
