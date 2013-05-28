@@ -4,7 +4,7 @@
 Summary:	Build Vagrant base boxes or KVM, VirtualBox and Fusion images
 Name:		veewee
 Version:	0.3.7
-Release:	1
+Release:	2
 License:	MIT
 Group:		Applications/Emulators
 Source0:	https://github.com/jedi4ever/veewee/archive/v%{version}.tar.gz
