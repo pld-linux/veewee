@@ -3,12 +3,12 @@
 #   - grit
 Summary:	Build Vagrant base boxes or KVM, VirtualBox and Fusion images
 Name:		veewee
-Version:	0.3.7
-Release:	2
+Version:	0.3.10
+Release:	1
 License:	MIT
 Group:		Applications/Emulators
-Source0:	https://github.com/jedi4ever/veewee/archive/v%{version}.tar.gz
-# Source0-md5:	2b5a2f293eabe65b9c104258574e5967
+Source0:	https://github.com/jedi4ever/veewee/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	eed8f95ccf7e23ba9ed6880b13b3862b
 Patch0:		install-root.patch
 URL:		http://github.com/jedi4ever/veewee/
 BuildRequires:	rpm-rubyprov
@@ -70,6 +70,9 @@ install -d $RPM_BUILD_ROOT{%{ruby_vendorlibdir},%{_bindir},%{_appdir}}
 cp -a lib/* $RPM_BUILD_ROOT%{ruby_vendorlibdir}
 cp -a bin/* $RPM_BUILD_ROOT%{_bindir}
 cp -a templates validation $RPM_BUILD_ROOT%{_appdir}
+
+# junk
+rm -r $RPM_BUILD_ROOT%{ruby_vendorlibdir}/fission.old
 
 %clean
 rm -rf $RPM_BUILD_ROOT
