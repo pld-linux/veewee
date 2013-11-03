@@ -3,13 +3,14 @@
 #   - grit
 Summary:	Build Vagrant base boxes or KVM, VirtualBox and Fusion images
 Name:		veewee
-Version:	0.3.10
+Version:	0.3.12
 Release:	1
 License:	MIT
 Group:		Applications/Emulators
 Source0:	https://github.com/jedi4ever/veewee/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	eed8f95ccf7e23ba9ed6880b13b3862b
+# Source0-md5:	a45f8f1b958ba05139433e17ed393ad0
 Patch0:		install-root.patch
+Patch1:		no-os-gem.patch
 URL:		http://github.com/jedi4ever/veewee/
 BuildRequires:	rpm-rubyprov
 BuildRequires:	rpmbuild(macros) >= 1.656
@@ -57,6 +58,7 @@ Besides building Vagrant boxes, veewee can also be used for:
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
 
 # unvendor

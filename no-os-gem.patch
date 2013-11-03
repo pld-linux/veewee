@@ -1,0 +1,31 @@
+do not depend on os rubygem just to support OS.windows check
+
+--- veewee-0.3.12/lib/veewee/provider/virtualbox/box.rb	2013-11-03 17:00:25.659997444 +0200
++++ veewee-0.3.12/lib/veewee/provider/virtualbox/box.rb	2013-11-03 17:00:11.099359121 +0200
+@@ -1,7 +1,5 @@
+ require 'veewee/provider/core/box'
+ 
+-require 'os'
+-
+ require 'veewee/provider/virtualbox/box/build'
+ require 'veewee/provider/virtualbox/box/create'
+ require 'veewee/provider/virtualbox/box/halt'
+@@ -52,7 +50,7 @@
+         end
+ 
+         def self.determine_vboxcmd
+-          @command ||= windows_vboxcmd || default_vboxcmd
++          @command ||= default_vboxcmd
+         end
+ 
+ 
+--- veewee-0.3.12/veewee.gemspec	2013-11-03 17:00:25.669997882 +0200
++++ veewee-0.3.12/veewee.gemspec	2013-11-03 16:59:14.423541960 +0200
+@@ -34,7 +34,6 @@
+   s.add_dependency "childprocess"
+   s.add_dependency "grit"
+   s.add_dependency "fission", "0.4.0"
+-  s.add_dependency "os", "~> 0.9.6"
+ 
+   s.required_ruby_version = '>= 1.9.2'
+ 
