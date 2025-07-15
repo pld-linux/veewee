@@ -57,8 +57,8 @@ Besides building Vagrant boxes, veewee can also be used for:
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 %{__sed} -i -e '1 s,#!.*ruby,#!%{__ruby},' bin/*
 
 # unvendor
